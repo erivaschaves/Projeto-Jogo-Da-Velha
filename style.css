@@ -1,1 +1,19 @@
 @charset "UTF-8";
+/*Configurações da div jogo*/
+#jogo {
+    width: 603px;/*Definindo largura*/
+    height: 600px;/*Definindo altura*/
+    border: solid 3px black; /*Criando borda*/
+}
+/*Configurações da class linha*/
+.linha {
+    height: 200px;
+    border-bottom: solid 1px black;
+}
+/*Configurações da class casa*/
+.casa {
+    width: 200px;
+    height: 100%;
+    border-right: solid 1px black;
+    float: left;
+}
