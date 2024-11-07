@@ -4,8 +4,34 @@ var matriz = new Array(3);
 matriz[0] = new Array(3);
 matriz[1] = new Array(3);
 matriz[2] = new Array(3);
-var valor = window.document.getElementById(valor);;
+var valor = window.document.getElementById('valor');
 var res = window.document.getElementById('res');
+var casa1 = window.document.getElementById ('casa1');
+var sinal = 'X';
+var jogada = 0;
+
+function jogar(){
+    if (jogada % 2 == 0) {
+        res.innerHTML = 'Vez do jogador 1';
+        sinal = 'X';
+    }else {
+        res.innerHTML = 'Vez do jogador 2';
+        sinal = 'O';  
+    }
+    if (casaValida){
+        casa1.innerHTML = sinal;
+    }else{
+        res.innerHTML = 'Escolha outra casa';
+    }
+    jogada ++;
+}
+
+function casaValida(){
+    if (casa1.value == ''){
+        return true;
+    }
+        return false;
+}
 
 /*function imprimir(){
 // inserindo valores na matriz e imprimindo
@@ -145,7 +171,9 @@ function imprimir(){
     }
     res.innerHTML += matriz.join('<br>');
     }
-
+function inserir(){
+    casa1.innerHTML = 'X';
+}
 
 
 

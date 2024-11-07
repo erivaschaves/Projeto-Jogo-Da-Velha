@@ -4,6 +4,8 @@
     width: 603px;/*Definindo largura*/
     height: 600px;/*Definindo altura*/
     border: solid 3px black; /*Criando borda*/
+    text-align: center;
+    font-size: 110pt;
 }
 /*Configurações da class linha*/
 .linha {
