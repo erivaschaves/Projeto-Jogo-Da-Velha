@@ -6,9 +6,14 @@ matriz[1] = new Array(3);
 matriz[2] = new Array(3);
 var valor = window.document.getElementById('valor');
 var res = window.document.getElementById('res');
-var casa1 = window.document.getElementById ('casa1');
+//var casa1 = window.document.getElementById ('casa1');
+matriz[0][0] = window.document.getElementById ('casa1');
+matriz[0][1] = window.document.getElementById ('casa2');
+matriz[0][2] = window.document.getElementById ('casa3');
 var sinal = 'X';
 var jogada = 0;
+var lin = 0;
+var col = 0;
 
 function jogar(){
     if (jogada % 2 == 0) {
@@ -19,7 +24,7 @@ function jogar(){
         sinal = 'O';  
     }
     if (casaValida){
-        casa1.innerHTML = sinal;
+        matriz[lin][col].innerHTML = sinal;
     }else{
         res.innerHTML = 'Escolha outra casa';
     }
@@ -27,7 +32,7 @@ function jogar(){
 }
 
 function casaValida(){
-    if (casa1.value == ''){
+    if (matriz[lin][col].value == ''){
         return true;
     }
         return false;
