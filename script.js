@@ -180,6 +180,14 @@ function inserir(){
     casa1.innerHTML = 'X';
 }
 
+var descedentes = window.document.querySelectorAll("#list a");
+for(var i = 0; i< descedentes.length;i++){
+    descedentes[i].addEventListener("click", function (e){
+        alert('O elemento clicado foi o ' + this.innerHTML);
+    })
+}
+
+
 
 
 
