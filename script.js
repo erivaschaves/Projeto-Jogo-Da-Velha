@@ -7,36 +7,31 @@ matriz[2] = new Array(3);
 var valor = window.document.getElementById('valor');
 var res = window.document.getElementById('res');
 //var casa1 = window.document.getElementById ('casa1');
-matriz[0][0] = window.document.getElementById ('casa1');
-matriz[0][1] = window.document.getElementById ('casa2');
-matriz[0][2] = window.document.getElementById ('casa3');
+//matriz[0][0] = window.document.getElementById ('casa1');
+//matriz[0][1] = window.document.getElementById ('casa2');
+//matriz[0][2] = window.document.getElementById ('casa3');
 var sinal = 'X';
 var jogada = 0;
-var lin = 0;
-var col = 0;
-
+// Selecionando todas as casas, com querry selector da class casa
+var casa = window.document.querySelectorAll(".casa");
+//Definindo função jogar
 function jogar(){
     if (jogada % 2 == 0) {
-        res.innerHTML = 'Vez do jogador 1';
+        res.innerHTML = 'Vez do jogador 2';
         sinal = 'X';
     }else {
-        res.innerHTML = 'Vez do jogador 2';
+        res.innerHTML = 'Vez do jogador 1';
         sinal = 'O';  
     }
-    if (casaValida){
-        matriz[lin][col].innerHTML = sinal;
-    }else{
-        res.innerHTML = 'Escolha outra casa';
-    }
-    jogada ++;
+    jogada ++; 
 }
 
-function casaValida(){
-    if (matriz[lin][col].value == ''){
-        return true;
-    }
-        return false;
+for(var i = 0; i < casa.length;i++){
+    casa[i].addEventListener("click", function (){
+        this.innerHTML = sinal;
+    })
 }
+
 
 /*function imprimir(){
 // inserindo valores na matriz e imprimindo
@@ -176,14 +171,12 @@ function imprimir(){
     }
     res.innerHTML += matriz.join('<br>');
     }
-function inserir(){
-    casa1.innerHTML = 'X';
-}
 
 var descedentes = window.document.querySelectorAll("#list a");
 for(var i = 0; i< descedentes.length;i++){
     descedentes[i].addEventListener("click", function (e){
-        alert('O elemento clicado foi o ' + this.innerHTML);
+        //alert('O elemento clicado foi o ' + this.innerHTML);
+        this.innerHTML = 'X';
     })
 }
 
