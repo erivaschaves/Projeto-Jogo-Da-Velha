@@ -23,12 +23,33 @@ function jogar(){
         res.innerHTML = 'Vez do jogador 1';
         sinal = 'O';  
     }
-    jogada ++; 
+    jogada ++;
+    if(window.document.getElementById('casa1').value == 'X' && window.document.getElementById('casa2').value == 'X' && window.document.getElementById('casa3').value == 'X'){
+        window.alert('Jogador 1 Ganhou!!!');
+        jogada = 0;
+        location.reload();
+    }
 }
 
+
+
+if(jogada == 9){
+    window.alert('Empate!!!');
+    jogada = 0;
+    location.reload();
+}
+
+//Validando número da casa
 for(var i = 0; i < casa.length;i++){
+    //Adicionando sinal a casa clicada
     casa[i].addEventListener("click", function (){
+        //Validando se a casa já está ocupada
+        if(this.innerHTML == 'X' || this.innerHTML == 'O'){
+            res.innerHTML = 'Posição ocupada tente novamente';
+            jogada --;
+        }else {
         this.innerHTML = sinal;
+        }
     })
 }
 
