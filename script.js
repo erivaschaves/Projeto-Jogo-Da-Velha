@@ -1,15 +1,4 @@
-//Definindo 3 linhas
-var matriz = new Array(3);
-//Definindo 3 colunas
-matriz[0] = new Array(3);
-matriz[1] = new Array(3);
-matriz[2] = new Array(3);
-var valor = window.document.getElementById('valor');
 var res = window.document.getElementById('res');
-//var casa1 = window.document.getElementById ('casa1');
-//matriz[0][0] = window.document.getElementById ('casa1');
-//matriz[0][1] = window.document.getElementById ('casa2');
-//matriz[0][2] = window.document.getElementById ('casa3');
 var sinal = 'X';
 var jogada = 0;
 // Selecionando todas as casas, com querry selector da class casa
@@ -24,19 +13,24 @@ function jogar(){
         sinal = 'O';  
     }
     jogada ++;
-    if(window.document.getElementById('casa1').value == 'X' && window.document.getElementById('casa2').value == 'X' && window.document.getElementById('casa3').value == 'X'){
-        window.alert('Jogador 1 Ganhou!!!');
+    //Validando vencedor
+    for (var i = 0; i<casa.length; i++){
+        if(casa[0].innerHTML == 'X' && casa[1].innerHTML == 'X' && casa[2].innerHTML == 'X' || casa[3].innerHTML == 'X' && casa[4].innerHTML == 'X' && casa[5].innerHTML == 'X' || casa[6].innerHTML == 'X' && casa[7].innerHTML == 'X' && casa[8].innerHTML == 'X' || casa[0].innerHTML == 'X' && casa[3].innerHTML == 'X' && casa[6].innerHTML == 'X' || casa[2].innerHTML == 'X' && casa[5].innerHTML == 'X' && casa[8].innerHTML == 'X' || casa[0].innerHTML == 'X' && casa[4].innerHTML == 'X' && casa[8].innerHTML == 'X' || casa[2].innerHTML == 'X' && casa[5].innerHTML == 'X' && casa[8].innerHTML == 'X' || casa[1].innerHTML == 'X' && casa[4].innerHTML == 'X' && casa[7].innerHTML == 'X'){
+            window.alert('Jogador 1 Ganhou !!!')
+            jogada = 0;
+            location.reload();
+        }else if(casa[0].innerHTML == 'O' && casa[1].innerHTML == 'O' && casa[2].innerHTML == 'O' || casa[3].innerHTML == 'O' && casa[4].innerHTML == 'O' && casa[5].innerHTML == 'O' || casa[6].innerHTML == 'O' && casa[7].innerHTML == 'O' && casa[8].innerHTML == 'O' || casa[0].innerHTML == 'O' && casa[3].innerHTML == 'O' && casa[6].innerHTML == 'O' || casa[2].innerHTML == 'O' && casa[5].innerHTML == 'O' && casa[8].innerHTML == 'O' || casa[0].innerHTML == 'O' && casa[4].innerHTML == 'O' && casa[8].innerHTML == 'O' || casa[2].innerHTML == 'O' && casa[5].innerHTML == 'O' && casa[8].innerHTML == 'O' || casa[1].innerHTML == 'O' && casa[4].innerHTML == 'O' && casa[7].innerHTML == 'O'){
+            window.alert('Jogador 2 Ganhou !!!')
+            jogada = 0;
+            location.reload();
+        }
+    }
+    if(jogada == 9){
+        window.alert('Empate!!!');
         jogada = 0;
         location.reload();
     }
-}
-
-
-
-if(jogada == 9){
-    window.alert('Empate!!!');
-    jogada = 0;
-    location.reload();
+    
 }
 
 //Validando número da casa
@@ -52,160 +46,3 @@ for(var i = 0; i < casa.length;i++){
         }
     })
 }
-
-
-/*function imprimir(){
-// inserindo valores na matriz e imprimindo
-for (var lin=0 ; lin<3 ; lin++){
-    for (var col = 0; col<3; col++){
-        matriz[lin][col] = valor;
-        valor ++
-    }
-}
-res.innerHTML = matriz.join('<br>');
-}
-
-//imprimindo matriz
-/*console.log(matriz.join('\n'));*/
-
-
-/*var ganhou = false;
-
-var jogada  = 0;
-
-var sinal = 'X';
-
-var lin = 0;
-
-var col = 0;
-//Defindo simbolos dos jogadores
-console.log ("Jogador 1 = X");
-console.log ("Jogador 2 = O");
-//Enquanto não houver vencedor
-while (!ganhou){
-    if (jogada % 2 == 0) {
-        console.log("Vez do jogador 1, escolha linha e coluna 1-3 ");
-        sinal = 'X';
-    } else {
-        console.log("Vez do jogador 2, escolha linha e coluna 1-3 ");
-        sinal = 'O';
-    }
-    //Verificando se a linha é válida
-    var linhaValida = false;
-    while (!linhaValida){
-        console.log("Informe a linha 1,2 ou 3");
-        var linha = valor;
-        if (linha >= 0 && linha <3) {
-            linhaValida = true;
-        }else{
-            console.log("Linha inválida digite novamente");
-        }
-    }
-    //Verificando se a coluna é válida
-    var colunaValida= false;
-    while (!colunaValida){
-        console.log("Informe a coluna 1,2 ou 3");
-        var coluna = valor;
-        if (coluna >= 0 && coluna <3) {
-            colunaValida = true;
-        }else{
-            console.log("Linha inválida digite novamente");
-        }
-    }
-    //Verificando se linha ou coluna já foi usada.
-    if (matriz[lin][col] == 'X' || matriz[lin][col] == 'O'){
-        console.log("posição já usada, tente novamente");
-    }else{
-        matriz[linha][coluna] = sinal;
-        jogada++;
-    }
-    //Imprimindo matriz atual do jogo
-    for( var i = 0; i<matriz.length; i++){
-        for(var j = 0; j<matriz.length;j++){
-            console.log(matriz[i][j] + " | ");
-        }
-        console.log();
-    }
-    if (matriz[0][0] == 'X' && matriz[0][1] == 'X' && matriz[0][2] == 'X'
-        || matriz[1][0] == 'X' && matriz[1][1] == 'X' && matriz[1][2] == 'X'
-        || matriz[2][0] == 'X' && matriz[2][1] == 'X' && matriz[2][2] == 'X'
-        || matriz[0][0] == 'X' && matriz[1][1] == 'X' && matriz[2][2] == 'X'
-        || matriz[0][2] == 'X' && matriz[1][1] == 'X' && matriz[2][0] == 'X'
-        || matriz[0][0] == 'X' && matriz[1][0] == 'X' && matriz[2][0] == 'X'
-        || matriz[0][1] == 'X' && matriz[1][1] == 'X' && matriz[2][1] == 'X'
-        || matriz[0][2] == 'X' && matriz[1][2] == 'X' && matriz[2][2] == 'X'){
-        ganhou = true;
-        console.log("Jogador 1 ganhou!!!");
-        }else 
-    if (matriz[0][0] == 'O' && matriz[0][1] == 'O' && matriz[0][2] =='O'
-        || matriz[1][0] == 'O' && matriz[1][1] == 'O' && matriz[1][2] == 'O'
-        || matriz[2][0] == 'O' && matriz[2][1] == 'O' && matriz[2][2] == 'O'
-        || matriz[0][0] == 'O' && matriz[1][1] == 'O' && matriz[2][2] == 'O'
-        || matriz[0][2] == 'O' && matriz[1][1] == 'O' && matriz[2][0] == 'O'
-        || matriz[0][0] == 'O' && matriz[1][0] == 'O' && matriz[2][0] == 'O'
-        || matriz[0][1] == 'O' && matriz[1][1] == 'O' && matriz[2][1] == 'O'
-        || matriz[0][2] == 'O' && matriz[1][2] == 'O' && matriz[2][2] == 'O'){
-        ganhou = true;
-        console.log("Jogador 2 ganhou!!!");
-}else if (jogada>=9){
-    ganhou = true;
-    console.log("Empate!!!");
-}
-}*/
-
-function imprimir(){
-    // inserindo valores na matriz e imprimindo
-    for (var lin=0 ; lin<3 ; lin++){
-        for (var col = 0; col<3; col++){
-            matriz[lin][col] = 'X';
-        }
-    }
-    matriz[1][1] = 'O';
-    matriz[0][1] = 'O';
-    matriz[2][0] = 'O';
-    matriz[2][1] = 'O';
-    matriz[1][2] = 'O';
-    if (matriz[0][0] == 'X' && matriz[0][1] == 'X' && matriz[0][2] == 'X'
-        || matriz[1][0] == 'X' && matriz[1][1] == 'X' && matriz[1][2] == 'X'
-        || matriz[2][0] == 'X' && matriz[2][1] == 'X' && matriz[2][2] == 'X'
-        || matriz[0][0] == 'X' && matriz[1][1] == 'X' && matriz[2][2] == 'X'
-        || matriz[0][2] == 'X' && matriz[1][1] == 'X' && matriz[2][0] == 'X'
-        || matriz[0][0] == 'X' && matriz[1][0] == 'X' && matriz[2][0] == 'X'
-        || matriz[0][1] == 'X' && matriz[1][1] == 'X' && matriz[2][1] == 'X'
-        || matriz[0][2] == 'X' && matriz[1][2] == 'X' && matriz[2][2] == 'X'){
-        ganhou = true;
-        res.innerHTML='Jogador 1 ganhou!!!<br>';
-        }else 
-        if (matriz[0][0] == 'O' && matriz[0][1] == 'O' && matriz[0][2] =='O'
-            || matriz[1][0] == 'O' && matriz[1][1] == 'O' && matriz[1][2] == 'O'
-            || matriz[2][0] == 'O' && matriz[2][1] == 'O' && matriz[2][2] == 'O'
-            || matriz[0][0] == 'O' && matriz[1][1] == 'O' && matriz[2][2] == 'O'
-            || matriz[0][2] == 'O' && matriz[1][1] == 'O' && matriz[2][0] == 'O'
-            || matriz[0][0] == 'O' && matriz[1][0] == 'O' && matriz[2][0] == 'O'
-            || matriz[0][1] == 'O' && matriz[1][1] == 'O' && matriz[2][1] == 'O'
-            || matriz[0][2] == 'O' && matriz[1][2] == 'O' && matriz[2][2] == 'O'){
-            ganhou = true;
-            res.innerHTML='Jogador 2 ganhou!!!<br>';
-    }else {
-        ganhou = true;
-        res.innerHTML='Empate!!!<br>';
-    }
-    res.innerHTML += matriz.join('<br>');
-    }
-
-var descedentes = window.document.querySelectorAll("#list a");
-for(var i = 0; i< descedentes.length;i++){
-    descedentes[i].addEventListener("click", function (e){
-        //alert('O elemento clicado foi o ' + this.innerHTML);
-        this.innerHTML = 'X';
-    })
-}
-
-
-
-
-
-    
-
-
-
